@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import findCard from '../findCard';
 import Card from './Card';
 import '../index.css';
+import CardStack from './CardStack';
 
 const CardSubmit = () => {
     
@@ -59,22 +60,6 @@ const CardSubmit = () => {
             formattedDeckView.push(shapeToPush)
         }
 
-        const intendedShape =   [
-                                //card Stack
-                                    {
-                                        "quantity": 4,
-                                        "id": '2da52425-67da-59a1-8f06-474e791bae63',
-                                        "card": 
-                                        {
-                                            id: "2da52425-67da-59a1-8f06-474e791bae63",
-                                            imageUrl: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129665&type=card",
-                                            name: "Ornithopter"
-                                        }
-                                    }
-                                ]
-
-
-        console.log(formattedDeckView);
         return formattedDeckView
     }
 
@@ -84,8 +69,6 @@ const CardSubmit = () => {
         })
         setDeckView(filterDeckView)
        }
-
-       //console.log(newDeckView);
     
     return ( 
         <div>
@@ -99,7 +82,9 @@ const CardSubmit = () => {
             </div>
             <hr/>
             <div>
-            {deckView.map((card, index) => <Card key={card.id + `:${index}`} card={card} removeCard={removeCard(index)} addCard={addCardToDeck}/>)}
+                {newDeckView.map((cardStack) => <CardStack cardStack={cardStack}/>)}
+            </div>
+            <div>
             </div>
         </div>
      );
