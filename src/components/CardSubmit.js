@@ -9,10 +9,11 @@ const CardSubmit = () => {
     const [mtgCards, setMtgCards] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [deckView, setDeckView] = useState(JSON.parse(localStorage.getItem('deckView')) || []);
-    
+    const [newDeckView, setNewDeckView] = useState([])
 
     useEffect(() => {
         localStorage.setItem('deckView', JSON.stringify(deckView, null, 2));
+        setNewDeckView(formatDeckView(deckView))
     }, [deckView]);
 
 
@@ -33,12 +34,58 @@ const CardSubmit = () => {
         return setDeckView([...deckView, card])
     }
 
+    function formatDeckView(deckView){
+        const formattedDeckView = [];
+        
+        for(let i = 0; i < deckView.length; i++){
+            const iId = deckView[i].id;
+            if(formattedDeckView.some(({id}) => id === iId)){
+                continue;
+            }
+            let counter = 0;
+            for(var j = i++; j < deckView.length; j++){
+                const jId = deckView[j].id
+                if(jId === iId){
+                    counter++
+                }
+            }
+            const shapeToPush = {
+                quantity: counter,
+                id: iId,
+                card: deckView[i]
+            }
+
+
+            formattedDeckView.push(shapeToPush)
+        }
+
+        const intendedShape =   [
+                                //card Stack
+                                    {
+                                        "quantity": 4,
+                                        "id": '2da52425-67da-59a1-8f06-474e791bae63',
+                                        "card": 
+                                        {
+                                            id: "2da52425-67da-59a1-8f06-474e791bae63",
+                                            imageUrl: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129665&type=card",
+                                            name: "Ornithopter"
+                                        }
+                                    }
+                                ]
+
+
+        console.log(formattedDeckView);
+        return formattedDeckView
+    }
+
     const removeCard = (clickedCardIndex) => () => {
         const filterDeckView = deckView.filter((_, currentIndexInLoop) => {
             return currentIndexInLoop !== clickedCardIndex
         })
         setDeckView(filterDeckView)
        }
+
+       //console.log(newDeckView);
     
     return ( 
         <div>
