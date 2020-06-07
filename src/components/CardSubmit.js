@@ -3,6 +3,7 @@ import findCard from '../findCard';
 import Card from './Card';
 import '../index.css';
 import CardStack from './CardStack';
+import SearchedCards from './searchCards';
 
 const CardSubmit = () => {
     
@@ -32,6 +33,7 @@ const CardSubmit = () => {
     }
 
     function addCardToDeck(card){
+        console.log(card)
         return setDeckView([...deckView, card])
     }
 
@@ -78,11 +80,11 @@ const CardSubmit = () => {
             </form>
             <div>
                 {isLoading && 'Fetching Results'}
-                {mtgCards.map((card, index) => <Card key={card.id} card={card} addCard={addCardToDeck}/>)}
+                {mtgCards.map((card, index) => <SearchedCards key={card.id} card={card} addCard={addCardToDeck}/>)}
             </div>
             <hr/>
             <div>
-                {newDeckView.map((cardStack) => <CardStack cardStack={cardStack}/>)}
+                {newDeckView.map((cardStack, index) => <CardStack removeCard={removeCard} key={index} cardStack={cardStack} addCard={addCardToDeck}/>)}
             </div>
             <div>
             </div>

@@ -1,17 +1,15 @@
-import React from 'react';
-import mtgCardBack from "./images/mtgCardBack.png"
+import React from 'react'
+import mtgCardBack from './images/mtgCardBack.png'
 
-const Card = (props) => {
-
+const SearchedCards = (props) => {
     const imageOrFallback = props.card.imageUrl || mtgCardBack; 
     
     return ( 
-        <div style={{position: 'absolute'}}>
+        <div style={{display: 'inline-block'}}>
             <img src={imageOrFallback} alt={props.card.name} style={{
                 borderRadius: 10,
                 width: "148.6666666667px",
                 height: "207.3333333333px",
-                paddingTop: props.style.padding || "0px"
             }}/>
         <div>
             <button onClick={() => props.addCard(props.card)}>+</button>
@@ -21,4 +19,4 @@ const Card = (props) => {
      );
 }
  
-export default Card;
+export default SearchedCards;

@@ -1,13 +1,19 @@
 import React from 'react';
-
+import Card from './Card';
 
 const CardStack = (props) => {
-    console.log(props.cardStack)
+    const renderCards = () => {
+        const cardsToRender = [];
+        for(var i = 1; i < props.cardStack.quantity; i++){
+            cardsToRender.push(<Card card={props.cardStack.card} removeCard={props.removeCard} key={i} addCard={props.addCard} style={{
+                padding: `${i * 30}` + 'px'
+            }}/>)
+        }
+        return cardsToRender
+    }
     return (
-    <div>
-        <pre>
-           {props.cardStack.card.name} {props.cardStack.quantity} {props.cardStack.id}
-        </pre>
+    <div style={{position: "relative"}}>
+        {renderCards()}
     </div>  
     );
 }
