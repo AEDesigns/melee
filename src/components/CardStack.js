@@ -12,9 +12,13 @@ const CardStack = (props) => {
         return cardsToRender
     }
     return (
-    <div style={{position: "relative"}}>
-        {renderCards()}
-    </div>  
+    <div>
+        <div style={{position: "relative"}}>
+            <div style={{display: "block", position: "relative"}}>
+            {renderCards()}
+            </div>
+        </div> 
+    </div> 
     );
 }
  
