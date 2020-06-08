@@ -36,11 +36,9 @@ const CardSubmit = () => {
         }).finally(() => {
             setIsLoading(false);
         })
-        //setMtgCards(findCard(searchText))
     }
 
     function addCardToDeck(card){
-        console.log(card)
         return setDeckView([...deckView, card])
     }
 

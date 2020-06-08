@@ -6,7 +6,7 @@ const Card = (props) => {
     const imageOrFallback = props.card.imageUrl || mtgCardBack; 
     
     return (
-        <div>
+        <div style={{marginTop: '22px'}}>
             <div style={{position: "relative"}}>
             <img src={imageOrFallback} alt={props.card.name} style={{
                 borderRadius: 10,
@@ -16,7 +16,7 @@ const Card = (props) => {
             }}/>
         </div>
         {props.card.name}
-        <div style={{whiteSpace: "nowrap"}}>
+        <div style={{whiteSpace: "nowrap", top: "0", position: "absolute"}}>
             <button onClick={() => props.addCard(props.card)}>+</button>
             {props.removeCard && <button onClick={() => props.removeCard()}>-</button>}
         </div>
