@@ -12,6 +12,7 @@ const SearchedCards = (props) => {
                 height: "207.3333333333px",
             }}/>
         <div>
+            {props.card.name}
             <button onClick={() => props.addCard(props.card)}>+</button>
             {props.removeCard && <button onClick={() => props.removeCard()}>-</button>}
         </div>

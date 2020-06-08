@@ -1,9 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import findCard from '../findCard';
-import Card from './Card';
 import '../index.css';
 import CardStack from './CardStack';
 import SearchedCards from './searchCards';
+import {
+    FacebookShareButton,
+    TwitterShareButton
+  } from "react-share";
+  import {
+    FacebookIcon,
+    TwitterIcon
+  } from "react-share";
 
 const CardSubmit = () => {
     
@@ -67,24 +74,36 @@ const CardSubmit = () => {
 
     const removeCard = (clickedCardIndex) => () => {
         const filterDeckView = deckView.filter((_, currentIndexInLoop) => {
+            console.log("clicked")
             return currentIndexInLoop !== clickedCardIndex
         })
-        setDeckView(filterDeckView)
+        setNewDeckView(filterDeckView)
        }
     
     return ( 
         <div>
+            {deckView.length >= 1 ? 
+            <FacebookShareButton url={`${window.location.href}`}>
+                <FacebookIcon size={32} round={true}/>
+            </FacebookShareButton> : ''}
+            {deckView.length >= 1 ? 
+            <TwitterShareButton url={`${window.location.href}`}>
+                <TwitterIcon size={32} round={true}/>
+            </TwitterShareButton> : ''}
+            {isLoading && 'Fetching Results'}
             <form onSubmit={submitHandler}>
                 <input type="text" onChange={(e) => setSearchText(e.target.value)} value={searchText} />
                 <button type="submit">Submit</button>
             </form>
             <div>
-                {isLoading && 'Fetching Results'}
                 {mtgCards.map((card, index) => <SearchedCards key={card.id} card={card} addCard={addCardToDeck}/>)}
             </div>
             <hr/>
             <div>
                 {newDeckView.map((cardStack, index) => <CardStack removeCard={removeCard} key={index} cardStack={cardStack} addCard={addCardToDeck}/>)}
+            </div>
+            <div style={{bottom: "0", position: "absolute"}}>
+                {deckView.length >= 1 ? <button onClick={() => setDeckView([])}>Clear Deck</button>  : ""}
             </div>
             <div>
             </div>
