@@ -72,10 +72,10 @@ const CardSubmit = () => {
 
     const removeCard = (clickedCardIndex) => () => {
         const filterDeckView = deckView.filter((_, currentIndexInLoop) => {
-            console.log("clicked")
             return currentIndexInLoop !== clickedCardIndex
         })
-        setNewDeckView(filterDeckView)
+        setDeckView(filterDeckView)
+        console.log(deckView)
        }
     
     return ( 
