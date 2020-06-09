@@ -75,7 +75,6 @@ const CardSubmit = () => {
             return currentIndexInLoop !== clickedCardIndex
         })
         setDeckView(filterDeckView)
-        console.log(deckView)
        }
     
     return ( 

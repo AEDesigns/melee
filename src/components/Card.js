@@ -18,7 +18,7 @@ const Card = (props) => {
         {props.card.name}
         <div style={{whiteSpace: "nowrap", top: "0", position: "absolute"}}>
             <button onClick={() => props.addCard(props.card)}>+</button>
-            {props.removeCard && <button onClick={props.removeCard()}>-</button>}
+            {/* {props.removeCard && <button onClick={props.removeCard()}>-</button>} */}
         </div>
         </div>
      );
